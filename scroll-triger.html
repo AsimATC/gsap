@@ -7,83 +7,111 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script>
-
-    <!--
-    SplitText.min.js is a Club GreenSock perk which is not available on a CDN. Download it from your GreenSock account and include it locally like this:
-    
-    <script src="/[YOUR_DIRECTORY]/SplitText.min.js"></script>
-    
-    Sign up at https://greensock.com/club or try them for free on CodePen or CodeSandbox
-    -->
-
-    <!--
-SplitText.min.js is a Club GreenSock perk which is not available on a CDN. Download it from your GreenSock account and include it locally like this:
-
-<script src="/[YOUR_DIRECTORY]/SplitText.min.js"></script>
-
-Sign up at https://greensock.com/club or try them for free on CodePen or CodeSandbox
--->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/ScrollTrigger.min.js"></script>
 
 
     <style>
-        body {
-            font-family: 'Asap', Arial, Helvetica, sans-serif;
-            color: white;
-            background: black url(//s3-us-west-2.amazonaws.com/s.cdpn.io/16327/texture_bg.jpg) no-repeat 50% 0px;
-            margin: 3% 10% 0 10%;
-            overflow: hidden;
+        .box.active {
+            background-color: blue;
         }
 
-        #quote {
-            font-size: 44px;
-            line-height: 50px;
-            color: #dedede;
+        .box {
+            width: 100px;
+            height: 100px;
+            background-color: #28a92b;
+            position: absolute;
+            left: 100px;
+            z-index: 100;
+            line-height: 100px;
+            font-size: 50px;
+            text-align: center;
         }
 
-        button {
-            padding: 10px;
-            margin: 20px 0;
+        .a {
+            top: 200px;
+            background-color: #8d3dae;
+        }
+
+        .b {
+            top: 600px;
+        }
+
+        .c {
+            top: 1000px;
+            background-color: #e26c16;
+        }
+
+        .ghost {
+            top: 1000px;
+            background-color: #444;
+        }
+
+        .line {
+            width: 2px;
+            height: 3000px;
+            position: absolute;
+            left: 600px;
+            top: 0px;
+            /*   visibility: hidden; */
+            background-color: #777;
         }
     </style>
 </head>
 
 <body>
 
-    <link href='//fonts.googleapis.com/css?family=Asap:400,700' rel='stylesheet' type='text/css'>
+    <div class="box a">a</div>
+    <div class="box b">b</div>
 
-    <div id="quote">SplitText makes it easy to break apart the text in an HTML element so that each character, word,
-        and/or line is wrapped in its own div tag.</div>
+    <div class="box ghost">c</div>
+    
+    <div class="box c">c</div>
 
-    <button id="animate">animate</button>
+    <div class="line"></div>
+
+
+
     <script>
-        /*
-    See https://www.greensock.com/splittext/ for details. 
-    This demo uses SplitText which is a membership benefit of Club GreenSock, https://www.greensock.com/club/
-    */
-        gsap.registerPlugin(SplitText);
+        // For more information, see greensock.com/docs/v3/Plugins/ScrollTrigger
+        gsap.registerPlugin(ScrollTrigger);
 
-        var tl = gsap.timeline(),
-            mySplitText = new SplitText("#quote", { type: "words,chars" }),
-            chars = mySplitText.chars; //an array of all the divs that wrap each character
-
-        gsap.set("#quote", { perspective: 400 });
-
-        console.log(chars);
-
-        tl.from(chars, {
-            duration: 0.8,
-            opacity: 0,
-            scale: 0,
-            y: 80,
-            rotationX: 180,
-            transformOrigin: "0% 50% -50",
-            ease: "back",
-            stagger: 0.01
+        // You can use a ScrollTrigger in a tween or timeline
+        gsap.to(".b", {
+            x: 400,
+            rotation: 360,
+            scrollTrigger: {
+                trigger: ".b",
+                start: "top center",
+                end: "top 100px",
+                scrub: true,
+                markers: true,
+                id: "scrub"
+            }
         });
 
-        document.getElementById("animate").onclick = function () {
-            tl.restart();
-        };
+
+        // Or you can attach a tween or timeline to a ScrollTrigger later
+        const anim = gsap.to(".c", {
+            x: 400,
+            rotation: 360,
+            duration: 3
+        });
+
+        ScrollTrigger.create({
+            trigger: ".c",
+            animation: anim,
+            // Uncomment these to see how they affect the ScrollTrigger
+            // markers: true,
+            // start: "top center",
+            // end: "top 100px",
+            // toggleClass: "active",
+            // pin: true,
+            // scrub: 1,
+            // onUpdate: self => {
+            //   console.log("progress:", self.progress.toFixed(3), "direction:", self.direction, "velocity", self.getVelocity());
+            // }
+        });
+
     </script>
 </body>
 
