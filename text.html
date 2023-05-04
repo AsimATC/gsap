@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/TextPlugin.min.js"></script>
+
+
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
+
+
+        body {
+            margin: 0;
+            font-family: "Open Sans";
+        }
+
+        .container {
+            margin-top: 500px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100vw;
+            max-width: 100%;
+            height: 100vh;
+            background-color: black;
+            color: white;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        h1 {
+            color: #fff;
+            font-size: 6vw;
+            max-width: 50%;
+            width: 70%;
+            position: relative;
+        }
+
+        .one-row {
+            height: 120px;
+            overflow: hidden;
+        }
+
+        h1 div {
+            display: inline-block;
+            overflow: hidden;
+            position: relative;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h1 class="text-anim-1 one-row">Asım Atıcı Bu Alan Sana Özel</h1>
+    </div>
+    <div class="container">
+        <h1 class="text-anim-2 one-row">Asım Atıcı Bu Alan Sana Özel</h1>
+    </div>
+    <div class="container">
+        <h1 class="text-anim-3 one-row">Asım Atıcı Bu Alan Sana Özel</h1>
+    </div>
+
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function (event) {
+            var elements = [".text-anim-1", ".text-anim-2", ".text-anim-3"];
+            animation_text_1(elements);
+        });
+
+        function animation_text_1(elements) {
+            elements.forEach(function (element) {
+                var newText = "";
+                var theText = document.querySelector(element);
+                for (i = 0; i < theText.innerText.length; i++) {
+                    newText += "<div>";
+                    if (theText.innerText[i] == " ") { newText += "&nbsp;" }
+                    else { newText += theText.innerText[i]; }
+                    newText += "</div>";
+                }
+                theText.innerHTML = newText;
+                gsap.fromTo(element + " div", {
+                    opacity: 0,
+                    y: 100,
+                    skewY: 10,
+                }, {
+                    duration: .600,
+                    opacity: 1,
+                    y: 0,
+                    stagger: 0.03,
+                    ease: "power4.out",
+                    skewY: 0,
+                    scrollTrigger: {
+                        trigger: element,
+                        start: "top 60%",
+                        toggleActions: "restart none none reverse"
+                    }
+                });
+            });
+        }
+    </script>
+</body>
+
+</html>
