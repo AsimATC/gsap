@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/ScrollTrigger.min.js"></script>
+<script src="./js/animation.js"></script>
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Lora:wght@400;700&display=swap");
+
+        :root {
+            --bg-color: hsl(59, 50%, 53%);
+            --bg-main-color: hsl(0, 0%, 92%);
+            --bg-color-highlight: hsl(77, 80%, 60%);
+            --color-text: hsl(192, 14%, 20%);
+            --color-text-highlight: hsl(192, 14%, 0%);
+            --page-width: 90ch;
+            --block-font-size: min(max(1.2rem, 4vw), 1.4rem);
+            --h1-font-size: min(max(2rem, 8vw), 4rem);
+            --h2-font-size: min(max(2rem, 8vw), 1.5rem);
+            --padding: 8vmin;
+            --duration: 5s;
+            --ease: cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Lora", sans-serif;
+            font-weight: 400;
+            color: var(--color-text);
+            transition: background calc(var(--duration) / 4) var(--ease);
+        }
+
+        .head-sp {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin: 5rem auto 0;
+        }
+
+        .head-sp p {
+            margin: 0;
+        }
+
+
+        main {
+            margin: 6rem auto 12rem;
+            padding: 1rem var(--padding);
+            max-width: var(--page-width);
+            background-color: var(--bg-main-color);
+        }
+
+        h1 {
+            font-size: var(--h1-font-size);
+            text-align: center;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 4rem;
+        }
+
+        h2 {
+            font-size: var(--h2-font-size);
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        p {
+            margin: 2rem 0;
+            font-size: var(--block-font-size);
+            line-height: 1.7;
+        }
+
+        .text-highlight {
+            background-repeat: no-repeat;
+            background-size: 0% 100%;
+            -webkit-transition: color calc(var(--duration) / 4) var(--ease), background-color calc(var(--duration) / 4) var(--ease), background-size var(--duration) var(--ease);
+            transition: color calc(var(--duration) / 4) var(--ease), background-color calc(var(--duration) / 4) var(--ease), background-size var(--duration) var(--ease);
+        }
+
+        .active {
+            padding: 0 5px;
+            color: var(--color-text-highlight);
+            background-size: 100% 100%;
+            background-image: -webkit-gradient(linear, left top, left bottom, from(var(--bg-color-highlight)), to(var(--bg-color-highlight)));
+            background-image: linear-gradient(var(--bg-color-highlight), var(--bg-color-highlight));
+        }
+
+        @keyframes move {
+            100% {
+                transform: translate3d(0, 0, 1px) rotate(360deg);
+            }
+        }
+
+        .background {
+            position: fixed;
+            width: 100vw;
+            height: 100vh;
+            z-index: -2;
+            top: 0;
+            left: 0;
+            background: #f5f5f5;
+            overflow: hidden;
+        }
+
+        .background span {
+            width: 18vmin;
+            height: 18vmin;
+            border-radius: 18vmin;
+            backface-visibility: hidden;
+            position: absolute;
+            animation: move;
+            animation-duration: 42;
+            animation-timing-function: linear;
+            animation-iteration-count: infinite;
+        }
+
+
+        .background span:nth-child(0) {
+            color: #583C87;
+            top: 44%;
+            left: 77%;
+            animation-duration: 7s;
+            animation-delay: -76s;
+            transform-origin: -3vw 19vh;
+            box-shadow: 36vmin 0 5.422443435590042vmin currentColor;
+        }
+
+        .background span:nth-child(1) {
+            color: #583C87;
+            top: 37%;
+            left: 70%;
+            animation-duration: 54s;
+            animation-delay: -18s;
+            transform-origin: 12vw -8vh;
+            box-shadow: -36vmin 0 4.887142604678838vmin currentColor;
+        }
+
+        .background span:nth-child(2) {
+            color: #E45A84;
+            top: 88%;
+            left: 99%;
+            animation-duration: 15s;
+            animation-delay: -45s;
+            transform-origin: -16vw -8vh;
+            box-shadow: -36vmin 0 4.715343273480078vmin currentColor;
+        }
+
+        .background span:nth-child(3) {
+            color: #FFACAC;
+            top: 22%;
+            left: 49%;
+            animation-duration: 16s;
+            animation-delay: -44s;
+            transform-origin: -8vw -23vh;
+            box-shadow: -36vmin 0 4.550531667242666vmin currentColor;
+        }
+
+        .background span:nth-child(4) {
+            color: #583C87;
+            top: 55%;
+            left: 59%;
+            animation-duration: 20s;
+            animation-delay: -60s;
+            transform-origin: -11vw 16vh;
+            box-shadow: -36vmin 0 5.184147265061002vmin currentColor;
+        }
+
+        .background span:nth-child(5) {
+            color: #E45A84;
+            top: 12%;
+            left: 47%;
+            animation-duration: 57s;
+            animation-delay: -59s;
+            transform-origin: -5vw -24vh;
+            box-shadow: 36vmin 0 4.779113666396071vmin currentColor;
+        }
+
+        .background span:nth-child(6) {
+            color: #583C87;
+            top: 89%;
+            left: 46%;
+            animation-duration: 27s;
+            animation-delay: -41s;
+            transform-origin: -7vw 5vh;
+            box-shadow: -36vmin 0 4.56124374337072vmin currentColor;
+        }
+
+        .background span:nth-child(7) {
+            color: #E45A84;
+            top: 11%;
+            left: 31%;
+            animation-duration: 56s;
+            animation-delay: -69s;
+            transform-origin: 14vw 11vh;
+            box-shadow: -36vmin 0 4.595746328396912vmin currentColor;
+        }
+
+        .background span:nth-child(8) {
+            color: #E45A84;
+            top: 50%;
+            left: 71%;
+            animation-duration: 32s;
+            animation-delay: -2s;
+            transform-origin: -3vw 7vh;
+            box-shadow: -36vmin 0 5.298124672245981vmin currentColor;
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <div class="head-sp" id="highlight-style">
+        <h2>Scroll Trigger Show</h2>
+        <p class="text-highlight">scroll down</p>
+    </div>
+    <main id="highlight-style">
+
+        <h1>World Wide Web</h1>
+
+        <p>The World Wide Web (WWW), commonly known as the Web, is an information system where documents and other web
+            resources are identified by Uniform Resource Locators (URLs, such as https://www.example.com/), which may be
+            interlinked by hypertext, and are accessible over the Internet. The resources of the WWW are transferred via
+            the Hypertext Transfer Protocol (HTTP) and <span class="text-highlight">may be accessed by users by a
+                software application called</span> a web browser and are published by a software application called a
+            web server.</p>
+
+
+        <p>English engineer and computer scientist Sir Timothy John Berners-Lee invented the World Wide Web in 1989. He
+            wrote the first web browser in 1990 while employed at CERN near Geneva, Switzerland. The browser was
+            released outside CERN in 1991, first to other research institutions starting in January 1991 and then to the
+            general public in August 1991. <span class="text-highlight">The World Wide Web has been central to the
+                development of the Information Age and is the primary tool billions of people use to interact on the
+                Internet.</span></p>
+
+        <p>Web resources may be any type of downloaded media, but web pages are hypertext media that have been formatted
+            in Hypertext Markup Language (HTML). Such formatting allows for embedded hyperlinks that contain URLs and
+            permit users to navigate to other web resources. <span class="text-highlight">In addition</span> to text,
+            web pages may contain references to images, video, audio, and software components which are displayed in the
+            user's web browser as coherent pages of multimedia content.</p>
+
+    </main>
+    <div class="background">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+
+    <script>
+        const highlight = document.getElementById("highlight-style");
+
+        gsap.registerPlugin(ScrollTrigger);
+
+        gsap.utils.toArray(".text-highlight").forEach((highlight) => {
+            ScrollTrigger.create({
+                trigger: highlight,
+                start: "-100px center",
+                onEnter: () => highlight.classList.add("active")
+            });
+        });
+    </script>
+</body>
+
+</html>
