@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="tr">
+
+<head>
+    <meta charset="utf-8">
+    <title>PanelSnap</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimal-ui">
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Unbounded:wght@600&display=swap');
+
+        * {
+            box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            outline-offset: 3px;
+        }
+
+        *:focus {
+            outline: 3px solid #000000;
+        }
+
+        body {
+            margin: 0;
+            color: #000000;
+            font-family: 'Unbounded';
+            font-weight: 300;
+            font-size: 24px;
+            min-height: 100vh;
+            background: #ffffff;
+        }
+
+        section {
+            display: grid;
+            place-content: center;
+            height: 100vh;
+
+        }
+
+        h1 {
+            font-size: 72px;
+        }
+
+        body section:nth-child(even) {
+            background: #333333;
+            color: #f4f4f4;
+        }
+    </style>
+
+
+</head>
+
+<body>
+
+    <section>
+        <h1 class="intro__title">ASIM ATICI</h1>
+    </section>
+    <section>
+        <h1>FULL STACKT DEVELOPER</h1>
+    </section>
+    <section>
+        <h1>BU ALAN SANA ÖZEL</h1>
+    </section>
+    <section>
+        <h1>- SNAP PAGE -</h1>
+    </section>
+    <script src="panelsnap.js" defer></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            window.panelsnap = new PanelSnap();
+        });
+
+        var defaultOptions = {
+            container: document.body,
+            panelSelector: '> section',
+            directionThreshold: 5000,
+            delay: 3000,
+            duration: 3000,
+            easing: function (bottom) { return top },
+        };
+
+    </script>
+</body>
+
+</html>
